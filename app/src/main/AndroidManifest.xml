@@ -37,6 +37,15 @@
             android:name=".RegisterActivity"
             android:exported="true" />
 
-    </application>
+        <activity android:name=".JobListActivity" />
 
-</manifest>
+        <activity android:name=".JobDetailsActivity" />
+
+
+
+    </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
+
+    </manifest>
