@@ -12,7 +12,7 @@
         android:text="Register"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:textColor="#1976D2 "
+        android:textColor="#1976D2"
         android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -61,20 +61,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Account"
-        android:backgroundTint="#1976D2 "
-        android:textColor="@color/white"
+        android:backgroundTint="#1976D2"
+        android:textColor="@android:color/white"
         android:padding="12dp"
         android:contentDescription="Sign up button" />
 
-    <!-- Login redirect text -->
+    <!-- Already have an account phrase -->
     <TextView
         android:id="@+id/loginTextView"
-        android:text="Already have an account? Login"
-        android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="Login redirect text"
+        android:gravity="center"
+        android:text="Already have an account?"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="Login redirect text" />
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#0D47A1"
+        android:contentDescription="Login button"
+        android:padding="12dp"
+        android:text="Login"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
