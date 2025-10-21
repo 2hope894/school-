@@ -55,13 +55,14 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void registerUser(String name, String email, String password) {
-        // ✅ Use correct IP or emulator localhost
-        String url = "http://10.0.2.16/job-portal/api/register_api.php";
+        // Use correct emulator/local IP
+        String url = "http://10.110.6.58/hope/job-portal/api/register_api.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
+                    Toast.makeText(this, "Server response: " + response, Toast.LENGTH_LONG).show();
                     switch (response.trim()) {
                         case "success":
                             Toast.makeText(this, "Registration successful!", Toast.LENGTH_LONG).show();
@@ -80,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.makeText(this, "Unexpected response: " + response, Toast.LENGTH_LONG).show();
                     }
                 },
-                error -> Toast.makeText(this, "Network error: " + error.getMessage(), Toast.LENGTH_LONG).show()
+                error -> Toast.makeText(this, "Network error: " + error.toString(), Toast.LENGTH_LONG).show()
         ) {
             @Override
             protected Map<String, String> getParams() {
@@ -94,4 +95,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         queue.add(request);
     }
+
+
 }

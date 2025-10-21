@@ -26,12 +26,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Initialize views
         edtEmail = findViewById(R.id.emailEditText);
         edtPassword = findViewById(R.id.passwordEditText);
         btnLogin = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
 
-        // Login button click
+        // Handle Login button click
         btnLogin.setOnClickListener(v -> {
             String email = edtEmail.getText().toString().trim();
             String password = edtPassword.getText().toString().trim();
@@ -44,44 +45,39 @@ public class LoginActivity extends AppCompatActivity {
             loginUser(email, password);
         });
 
-        // Register button click → open RegisterActivity
+        // Handle Register button click
         registerButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
     }
 
     private void loginUser(String email, String password) {
-        // 🔧 Change this to your local XAMPP or live server IP address
-        String url = "http://10.0.2.16/job-portal/api/login_api.php";
+        String url = "http://10.110.6.58/hope/job-portal/api/login_api.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest request = new StringRequest(Request.Method.POST, url,
                 response -> {
-                    switch (response.trim()) {
-                        case "success":
-                            Toast.makeText(this, "Login successful!", Toast.LENGTH_LONG).show();
+                    String res = response.trim();
+                    if (res.equalsIgnoreCase("success")) {
+                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
 
-                            // Go to next activity after login (optional)
-                            // startActivity(new Intent(this, DashboardActivity.class));
-                            // finish();
-                            break;
-
-                        case "invalid_credentials":
-                            Toast.makeText(this, "Invalid email or password", Toast.LENGTH_LONG).show();
-                            break;
-
-                        case "missing_parameters":
-                            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
-                            break;
-
-                        default:
-                            Toast.makeText(this, "Unexpected response: " + response, Toast.LENGTH_LONG).show();
+                        // ✅ Navigate to JobListActivity immediately after success
+                        Intent intent = new Intent(LoginActivity.this, JobListActivity.class);
+                        startActivity(intent);
+                        //finish(); // prevent returning to login with back button
+                    } else if (res.equalsIgnoreCase("invalid_credentials")) {
+                        Toast.makeText(this, "Invalid email or password", Toast.LENGTH_LONG).show();
+                    } else if (res.equalsIgnoreCase("missing_parameters")) {
+                        Toast.makeText(this, "Please fill all fields", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, "Unexpected response: " + res, Toast.LENGTH_LONG).show();
                     }
                 },
-                error -> Toast.makeText(this, "Network error: " + error.getMessage(), Toast.LENGTH_LONG).show()
-        ) {
+                error -> {
+                    error.printStackTrace();
+                    Toast.makeText(this, "Network error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -90,9 +86,6 @@ public class LoginActivity extends AppCompatActivity {
                 return params;
             }
         };
-
-        startActivity(new Intent(this, JobListActivity.class));
-
 
         queue.add(request);
     }

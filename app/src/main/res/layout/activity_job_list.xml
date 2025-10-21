@@ -6,21 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- ✅ Page title -->
     <TextView
         android:id="@+id/jobsTitle"
         android:text="Available Jobs"
         android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="#0D47A1"
-        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="12dp" />
 
+    <!-- ✅ RecyclerView for jobs -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/jobsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:scrollbars="vertical" />
 
+    <!-- ✅ Message when no jobs are found -->
     <TextView
         android:id="@+id/emptyText"
         android:text="No jobs available at the moment."

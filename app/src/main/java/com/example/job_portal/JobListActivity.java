@@ -1,6 +1,7 @@
 package com.example.job_portal;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,12 +43,14 @@ public class JobListActivity extends AppCompatActivity {
     }
 
     private void fetchJobs() {
-        String url = "http://10.0.2.16/job-portal/api/fetch_jobs.php"; // your server address
+        // ✅ Use your correct local IP
+        String url = "http://10.110.6.58/hope/job-portal/api/fetch_jobs.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
+                    Log.d("JobListActivity", "Response: " + response.toString());
                     if (response.length() == 0) {
                         emptyText.setVisibility(TextView.VISIBLE);
                         recyclerView.setVisibility(RecyclerView.GONE);
@@ -56,7 +59,8 @@ public class JobListActivity extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    Toast.makeText(this, "Error fetching jobs: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.e("JobListActivity", "Volley Error: ", error);
+                    Toast.makeText(this, "Error fetching jobs. Check your connection or API.", Toast.LENGTH_LONG).show();
                     emptyText.setVisibility(TextView.VISIBLE);
                 });
 
@@ -68,17 +72,32 @@ public class JobListActivity extends AppCompatActivity {
             jobList.clear();
             for (int i = 0; i < response.length(); i++) {
                 JSONObject jobObj = response.getJSONObject(i);
+
+                // ✅ Match field names from your PHP/DB exactly
+                String company_name = jobObj.optString("company_name");
+                String title = jobObj.optString("title");
+                String description = jobObj.optString("description");
+                String requirements = jobObj.optString("requirements");
+                String location = jobObj.optString("location");
+                String SalaryRange = jobObj.optString("SalaryRange");
+                String postedDate = jobObj.optString("postedDate");
+                String ExpiryDate = jobObj.optString("ExpiryDate");
+                String moreinformation = jobObj.optString("moreinformation");
+                String Region = jobObj.optString("Region");
+                String Category = jobObj.optString("Category");
+
                 jobList.add(new Job(
-                        jobObj.getString("title"),
-                        jobObj.getString("description"),
-                        jobObj.getString("requirements"),
-                        jobObj.getString("location"),
-                        jobObj.getString("salaryrange"),
-                        jobObj.getString("posteddate"),
-                        jobObj.getString("expirydate"),
-                        jobObj.getString("moreinformation"),
-                        jobObj.getString("region"),
-                        jobObj.getString("category")
+                        company_name,
+                        title,
+                        description,
+                        requirements,
+                        location,
+                        SalaryRange,
+                        postedDate,
+                        ExpiryDate,
+                        moreinformation,
+                        Region,
+                        Category
                 ));
             }
 
@@ -87,8 +106,8 @@ public class JobListActivity extends AppCompatActivity {
             emptyText.setVisibility(TextView.GONE);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Error parsing job data", Toast.LENGTH_SHORT).show();
+            Log.e("JobListActivity", "JSON Parsing Error: ", e);
+            Toast.makeText(this, "Error parsing job data.", Toast.LENGTH_SHORT).show();
         }
     }
 }

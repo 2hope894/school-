@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            // finish(); // uncomment if you don’t want to return to MainActivity
+             //finish(); // uncomment if you don’t want to return to MainActivity
         });
 
         btnRegister.setOnClickListener(v -> {

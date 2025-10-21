@@ -10,75 +10,106 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <!-- Company Name -->
+        <TextView
+            android:id="@+id/detailCompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TechLens Solutions"
+            android:textStyle="bold"
+            android:textColor="#1E88E5"
+            android:textSize="30sp"
+            android:layout_marginBottom="4dp" />
+
         <TextView
             android:id="@+id/detailTitle"
             android:text="Job Title"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#0D47A1"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailCategory"
             android:text="Category: IT"
             android:textSize="16sp"
-            android:textColor="#424242"
-            android:layout_marginBottom="5dp" />
+            android:textColor="#212121"
+            android:layout_marginBottom="5dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailRegion"
             android:text="Region: Lusaka"
             android:textSize="16sp"
-            android:textColor="#424242"
-            android:layout_marginBottom="10dp" />
+            android:textColor="#212121"
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailDescription"
             android:text="Description"
             android:textSize="16sp"
             android:textColor="#212121"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailRequirements"
             android:text="Requirements"
             android:textSize="16sp"
             android:textColor="#212121"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailLocation"
-            android:text="Location: "
+            android:text="Location:"
             android:textSize="16sp"
             android:textColor="#212121"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailSalary"
-            android:text="Salary Range: "
+            android:text="Salary Range:"
             android:textSize="16sp"
             android:textColor="#212121"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailPosted"
-            android:text="Posted: "
+            android:text="Posted:"
             android:textSize="14sp"
-            android:textColor="#616161"
-            android:layout_marginBottom="5dp" />
+            android:textColor="#212121"
+            android:layout_marginBottom="5dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailExpiry"
-            android:text="Expires: "
+            android:text="Expires:"
             android:textSize="14sp"
-            android:textColor="#616161"
-            android:layout_marginBottom="15dp" />
+            android:textColor="#212121"
+            android:layout_marginBottom="15dp"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
         <TextView
             android:id="@+id/detailMoreInfo"
             android:text="More Information: Visit our website to apply."
             android:textSize="16sp"
-            android:textColor="#1E88E5" />
+            android:textColor="#212121"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
 
     </LinearLayout>
 </ScrollView>
